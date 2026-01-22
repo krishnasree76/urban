@@ -221,6 +221,13 @@
     );
     background-size: 200% 100%;
   }
+
+  html,
+body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
   
   @keyframes shimmer {
     0% { background-position: 200% 0; }

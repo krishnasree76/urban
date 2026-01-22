@@ -142,49 +142,58 @@ export const Footer = () => {
             </motion.div>
 
             {/* Contact */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6 }}
-            >
-              <h4 className="text-lg font-semibold mb-6">Contact Us</h4>
-              <ul className="space-y-4">
-                <li className="flex items-start gap-3">
-                  <span className="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
-                    <Phone className="w-5 h-5 text-primary" />
-                  </span>
-                  <a
-                    href="tel:+919154156345"
-                    className="text-white/70 hover:text-primary transition-colors text-sm mt-2"
-                  >
-                    +91 91541 56345
-                  </a>
-                </li>
+            {/* Contact */}
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.6 }}
+>
+  <h4 className="text-lg font-semibold mb-6">Contact Us</h4>
 
-                <li className="flex items-start gap-3">
-                  <span className="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
-                    <Mail className="w-5 h-5 text-primary" />
-                  </span>
-                  <a
-                    href="mailto:Urbanlife1899@gmail.com"
-                    className="text-white/70 hover:text-primary transition-colors text-sm mt-2 break-all"
-                  >
-                    Urbanlife1899@gmail.com
-                  </a>
-                </li>
+  <ul className="space-y-5">
+    {/* Phone */}
+    <li className="flex items-start gap-4">
+      <span className="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+        <Phone className="w-5 h-5 text-primary" />
+      </span>
 
-                <li className="flex items-start gap-3">
-                  <span className="w-10 h-10 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center">
-                    <MapPin className="w-5 h-5 text-primary" />
-                  </span>
-                  <span className="text-white/70 text-sm mt-2 leading-relaxed">
-                    Save telephone colony, Abdullapurmet Mandal, Munganoor, Hayathnagar_Khalsa,
-                    Telangana 500070
-                  </span>
-                </li>
-              </ul>
-            </motion.div>
+      <a
+        href="tel:+919154156345"
+        className="flex-1 text-white/70 hover:text-primary transition-colors text-sm leading-relaxed mt-2"
+      >
+        +91 91541 56345
+      </a>
+    </li>
+
+    {/* Email */}
+    <li className="flex items-start gap-4">
+      <span className="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+        <Mail className="w-5 h-5 text-primary" />
+      </span>
+
+      <a
+        href="mailto:Urbanlife1899@gmail.com"
+        className="flex-1 text-white/70 hover:text-primary transition-colors text-sm leading-relaxed mt-2 break-words"
+      >
+        Urbanlife1899@gmail.com
+      </a>
+    </li>
+
+    {/* Address */}
+    <li className="flex items-start gap-4">
+      <span className="w-11 h-11 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center flex-shrink-0">
+        <MapPin className="w-5 h-5 text-primary" />
+      </span>
+
+      <p className="flex-1 text-white/70 text-sm leading-relaxed mt-2 break-words">
+        Save telephone colony, Abdullapurmet Mandal, Munganoor, Hayathnagar_Khalsa,
+        Telangana 500070
+      </p>
+    </li>
+  </ul>
+</motion.div>
+
 
             {/* Social + Mini Form */}
             <motion.div
