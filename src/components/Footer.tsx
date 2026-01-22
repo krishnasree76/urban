@@ -245,8 +245,18 @@ export const Footer = () => {
                 © {new Date().getFullYear()} Urban Life Retreat. All rights reserved.
               </p>
               <p className="text-white/60 text-sm">
-                Designed with <span className="text-primary">❤</span> for unforgettable experiences
-              </p>
+  Made with <span className="text-primary">❤</span> by{" "}
+  <a
+    href="https://staffarc.in"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="hover:text-primary transition-colors"
+  >
+    StaffArc
+  </a>
+</p>
+
+
             </div>
           </div>
         </div>
