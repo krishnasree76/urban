@@ -1,7 +1,5 @@
-import { useState } from "react";
-import { motion } from "framer-motion";
-import { useInView } from "framer-motion";
-import { useRef } from "react";
+import { useState, useRef } from "react";
+import { motion, useInView } from "framer-motion";
 import { Phone, Mail, MapPin, Instagram, Send, CheckCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -11,9 +9,15 @@ import { useToast } from "@/hooks/use-toast";
 const contactInfo = [
   {
     icon: Phone,
-    title: "Phone",
+    title: "Primary Phone",
     value: "+91 91541 56345",
     href: "tel:+919154156345",
+  },
+  {
+    icon: Phone,
+    title: "Alternate Phone",
+    value: "+91 92479 37789",
+    href: "tel:+919247937789",
   },
   {
     icon: Mail,
@@ -24,8 +28,9 @@ const contactInfo = [
   {
     icon: MapPin,
     title: "Address",
-    value: "Save telephone colony, Munganoor, Hayathnagar, Telangana 500070",
-    href: "https://maps.google.com/?q=Urban+Life+Retreat+Hayathnagar",
+    value:
+      "H.No 1-50/M/1, Munganoor Village, Abdullapurmet Mandal, Hayathnagar, Telangana 500070",
+    href: "https://maps.google.com/?q=17.2966651,78.6238939",
   },
   {
     icon: Instagram,
@@ -60,24 +65,19 @@ export const Contact = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // 1. Define the WhatsApp number (with country code, no symbols)
     const whatsappNumber = "919154156345";
 
-    // 2. Format the message string
-    const text = `*New Enquiry - Urban Life Retreat*%0A%0A` +
+    const text =
+      `*New Enquiry - Urban Life Retreat*%0A%0A` +
       `*Name:* ${formData.name}%0A` +
       `*Phone:* ${formData.phone}%0A` +
       `*Event:* ${formData.eventType || "Not specified"}%0A` +
       `*Date:* ${formData.date || "Not specified"}%0A` +
       `*Message:* ${formData.message || "No message"}`;
 
-    // 3. Create the WhatsApp URL
     const whatsappUrl = `https://wa.me/${whatsappNumber}?text=${text}`;
-
-    // 4. Open in a new tab
     window.open(whatsappUrl, "_blank");
 
-    // UI Updates
     setIsSubmitted(true);
     toast({
       title: "Opening WhatsApp...",
@@ -88,7 +88,6 @@ export const Contact = () => {
   return (
     <section id="contact" className="section-padding bg-background py-20" ref={ref}>
       <div className="container mx-auto px-4">
-        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -130,17 +129,19 @@ export const Contact = () => {
                     <info.icon className="w-6 h-6" />
                   </div>
                   <div>
-                    <p className="text-xs uppercase tracking-wider text-muted-foreground">{info.title}</p>
+                    <p className="text-xs uppercase tracking-wider text-muted-foreground">
+                      {info.title}
+                    </p>
                     <p className="font-medium text-secondary">{info.value}</p>
                   </div>
                 </a>
               ))}
             </div>
 
-            {/* Map Placeholder/Iframe */}
+            {/* Updated Google Map */}
             <div className="rounded-2xl overflow-hidden h-64 border border-primary/10 shadow-inner">
-               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3808.571439274245!2d78.6441!3d17.3361!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTfCsDIwJzA5LjkiTiA3OMKwMzgnMzguOCJF!5e0!3m2!1sen!2sin!4v1700000000000"
+              <iframe
+                src="https://www.google.com/maps?q=17.2966651,78.6238939&z=17&output=embed"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
@@ -169,11 +170,13 @@ export const Contact = () => {
                   className="text-center py-12"
                 >
                   <CheckCircle className="w-16 h-16 text-green-500 mx-auto mb-4" />
-                  <h4 className="text-xl font-semibold text-secondary mb-2">Redirected to WhatsApp</h4>
+                  <h4 className="text-xl font-semibold text-secondary mb-2">
+                    Redirected to WhatsApp
+                  </h4>
                   <p className="text-muted-foreground mb-6">
                     If WhatsApp didn't open automatically, please click below.
                   </p>
-                  <button 
+                  <button
                     onClick={() => setIsSubmitted(false)}
                     className="text-primary underline text-sm"
                   >
@@ -189,7 +192,9 @@ export const Contact = () => {
                         required
                         placeholder="Name"
                         value={formData.name}
-                        onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, name: e.target.value })
+                        }
                         className="bg-background border-primary/20"
                       />
                     </div>
@@ -200,7 +205,9 @@ export const Contact = () => {
                         type="tel"
                         placeholder="Mobile Number"
                         value={formData.phone}
-                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, phone: e.target.value })
+                        }
                         className="bg-background border-primary/20"
                       />
                     </div>
@@ -210,14 +217,18 @@ export const Contact = () => {
                     <div className="space-y-2">
                       <label className="text-sm font-medium">Event Type</label>
                       <Select
-                        onValueChange={(value) => setFormData({ ...formData, eventType: value })}
+                        onValueChange={(value) =>
+                          setFormData({ ...formData, eventType: value })
+                        }
                       >
                         <SelectTrigger className="bg-background border-primary/20">
                           <SelectValue placeholder="Select event" />
                         </SelectTrigger>
                         <SelectContent>
                           {eventTypes.map((type) => (
-                            <SelectItem key={type} value={type}>{type}</SelectItem>
+                            <SelectItem key={type} value={type}>
+                              {type}
+                            </SelectItem>
                           ))}
                         </SelectContent>
                       </Select>
@@ -227,7 +238,9 @@ export const Contact = () => {
                       <Input
                         type="date"
                         value={formData.date}
-                        onChange={(e) => setFormData({ ...formData, date: e.target.value })}
+                        onChange={(e) =>
+                          setFormData({ ...formData, date: e.target.value })
+                        }
                         className="bg-background border-primary/20"
                       />
                     </div>
@@ -238,7 +251,9 @@ export const Contact = () => {
                     <Textarea
                       placeholder="Special requirements..."
                       value={formData.message}
-                      onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                      onChange={(e) =>
+                        setFormData({ ...formData, message: e.target.value })
+                      }
                       rows={4}
                       className="bg-background border-primary/20 resize-none"
                     />
